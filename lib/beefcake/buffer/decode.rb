@@ -49,14 +49,17 @@ module Beefcake
     end
     alias :read_uint32 :read_uint64
 
-    def read_sint32
-      n = read_uint32
-      (n >> 1) ^ -(n & 1)
+    def read_sint64
+      decode_zigzag(read_uint64)
     end
+    alias :read_sint32 :read_sint64
 
     def read_sfixed32
-      n = read_fixed32
-      (n >> 1) ^ -(n & 1)
+      decode_zigzag(read_fixed32)
+    end
+
+    def read_sfixed64
+      decode_zigzag(read_fixed64)
     end
 
     def read_float
@@ -71,6 +74,13 @@ module Beefcake
 
     def read_bool
       read_int32 != 0
+    end
+
+
+    private
+
+    def decode_zigzag(n)
+      (n >> 1) ^ -(n & 1)
     end
 
   end
