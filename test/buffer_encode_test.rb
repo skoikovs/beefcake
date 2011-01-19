@@ -174,4 +174,12 @@ class BufferEncodeTest < Test::Unit::TestCase
     assert_equal "\001\000", @buf.to_s
   end
 
+  def test_append_sint32
+    fail "do this!"
+  end
+
+  def test_append_sfixed32
+    fail "do this!"
+  end
+
 end

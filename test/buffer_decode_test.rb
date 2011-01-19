@@ -75,4 +75,12 @@ class BufferDecodeTest < Test::Unit::TestCase
     assert_equal false, @buf.read_bool
   end
 
+  def test_read_sint32
+    fail "do this!"
+  end
+
+  def test_read_sfixed32
+    fail "do this!"
+  end
+
 end
