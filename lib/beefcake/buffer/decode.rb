@@ -49,6 +49,16 @@ module Beefcake
     end
     alias :read_uint32 :read_uint64
 
+    def read_sint32
+      n = read_uint32
+      (n >> 1) ^ -(n & 1)
+    end
+
+    def read_sfixed32
+      n = read_fixed32
+      (n >> 1) ^ -(n & 1)
+    end
+
     def read_float
       bytes = read(4)
       bytes.unpack("e").first
