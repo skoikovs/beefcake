@@ -76,11 +76,10 @@ class BufferDecodeTest < Test::Unit::TestCase
   end
 
   def test_read_sint32
-    #fail "do this!"
+    @buf.append_sint32
   end
 
   def test_read_sfixed32
-    #fail "do this!"
   end
 
 end
