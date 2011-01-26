@@ -13,8 +13,10 @@ module Beefcake
     MaxInt64  =  (1<<63)-1
 
     def self.wire_for(type)
+      return 0 if (type == Module)
+
       case type
-      when :int32, :uint32, :sint32, :int64, :uint64, :sint64, :bool, Module
+      when :int32, :uint32, :sint32, :int64, :uint64, :sint64, :bool
         0
       when :fixed64, :sfixed64, :double
         1
@@ -80,6 +82,8 @@ module Beefcake
 
     def read(n)
       case n
+      when Class
+        n.decode(read_string)
       when Symbol
         __send__("read_#{n}")
       when Module

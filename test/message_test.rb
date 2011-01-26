@@ -283,4 +283,12 @@ class MessageTest < Test::Unit::TestCase
     assert_equal 1, got.a
   end
 
+  def test_decode_composite_message
+    msg = CompositeMessage.new(
+      :encodable => SimpleMessage.new(:a => 123)
+    ).encode
+
+    assert_equal 123, CompositeMessage.decode(msg).encodable.a
+  end
+
 end
